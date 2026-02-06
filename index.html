@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nebula Enterprise | Space Logistics Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell" id="appShell">
+      <aside class="sidebar" id="sidebar">
+        <div class="brand">
+          <div class="brand__logo">✦</div>
+          <div class="brand__text">
+            <h1>Nebula</h1>
+            <p>Enterprise</p>
+          </div>
+        </div>
+
+        <button class="nav-item nav-item--active">Görev Merkezi</button>
+        <button class="nav-item">Filo İzleme</button>
+        <button class="nav-item">Maden Haritası</button>
+        <button class="nav-item">Yakıt Analitiği</button>
+        <button class="nav-item">İkmal Operasyonları</button>
+      </aside>
+
+      <main class="content">
+        <header class="topbar glass-card">
+          <button class="icon-btn" id="collapseBtn" aria-label="Sidebar daralt">
+            ☰
+          </button>
+          <div class="search-box">
+            <input type="text" placeholder="Sistem verilerinde ara..." />
+          </div>
+          <div class="topbar-actions">
+            <button class="icon-btn">🔔 <span class="badge">4</span></button>
+            <button class="profile-btn">
+              <span class="profile-avatar">NE</span>
+              <span>Komutan Asena</span>
+            </button>
+          </div>
+        </header>
+
+        <section class="dashboard-grid">
+          <article class="widget metric glass-card">
+            <h3>Aktif Uzay Gemisi Seferleri</h3>
+            <p class="metric__value" id="activeFlights">0</p>
+            <small>Son 5 sn içinde güncellenir</small>
+          </article>
+
+          <article class="widget metric glass-card">
+            <h3>Maden Rezervi</h3>
+            <p class="metric__value" id="mineralReserve">0 kt</p>
+            <small>Asteroit koridorlarından anlık veri</small>
+          </article>
+
+          <article class="widget chart-widget glass-card">
+            <div class="widget__header">
+              <h3>Yakıt Tüketimi</h3>
+              <p id="chartHint">Sütunların üzerine gelin</p>
+            </div>
+            <div class="fuel-chart" id="fuelChart"></div>
+          </article>
+
+          <article class="widget table-widget glass-card">
+            <div class="widget__header table-controls">
+              <h3>Sefer Listesi</h3>
+              <div class="filters">
+                <select id="filterShipType">
+                  <option value="all">Gemi Tipi: Tümü</option>
+                </select>
+                <select id="filterStatus">
+                  <option value="all">Durum: Tümü</option>
+                  <option value="Yolda">Yolda</option>
+                  <option value="İndi">İndi</option>
+                </select>
+                <select id="sortDistance">
+                  <option value="default">Mesafe: Varsayılan</option>
+                  <option value="asc">Mesafe: Artan</option>
+                  <option value="desc">Mesafe: Azalan</option>
+                </select>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Sefer Kodu</th>
+                    <th>Gemi Tipi</th>
+                    <th>Durum</th>
+                    <th>Mesafe (AU)</th>
+                    <th>Kalkış</th>
+                  </tr>
+                </thead>
+                <tbody id="missionTableBody"></tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="widget terminal-widget glass-card">
+            <div class="terminal-header">
+              <h3>Command Center</h3>
+              <p>Nebula OS Terminal v3.1</p>
+            </div>
+            <div class="terminal-screen" id="terminalOutput">
+              <p>> Nebula Enterprise başlatıldı.</p>
+              <p>> /help yazarak komutları görüntüleyin.</p>
+            </div>
+            <form id="terminalForm" class="terminal-input-row">
+              <span class="prompt">></span>
+              <input id="terminalInput" type="text" autocomplete="off" placeholder="Komut girin (örn: /status)" />
+            </form>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
